@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+	<link rel="stylesheet" href="https://at.alicdn.com/t/font_1059464_6eszze503rc.css">
+	<title>music</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+			box-sizing: border-box;
+		}
+		html,body{
+			height: 100%;
+			width: 100%;
+			min-height: 300px;
+			color: #fff;
+			font-size: 4vh;
+			overflow: hidden; 
+		}
+		ul,li{
+			list-style: none;
+		}
+		body{
+			position: relative;
+		}
+		#bg{
+			position: absolute;
+			z-index: -1;
+			top: -10px;
+			bottom: -10px;
+			left: -10px;
+			right: -10px;
+			background-image:url("./1.jpg"); 
+			background-size: cover;
+			filter: blur(5px); 
+		}
+		#bg:before{
+			content: "";
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			background-color: rgba(0,0,0,0.2)
+		}
+		header{
+			width: 80vw;
+			margin: 5vh auto 0 auto;
+			height: calc(100% - 35vh);
+		}
+		footer{
+			display: absolute;
+			bottom: 0;
+			height: 35vh;
+			padding: 1vh 30vh;
+			background-color: rgba(0,0,0,0.3);
+		}
+		section.control{
+			float: left;
+		}
+		section.information{
+			margin-left: 56vh;
+		}
+		section:after{
+			content: '';
+			display: block;
+			clear: both;
+		}
+		.music_style{
+			padding: 1vh;
+			display: inline-block;
+			background-color: #ff00b4;
+			font-size: 2vh;
+		}
+		.image{
+			width: 46vh;
+			height: 46vh;
+			background: url("./1.jpg");
+			background-size: cover;
+		}
+		.information{
+			margin-left: 30px;
+		}
+		.music_name{
+			font-size: 4vh;
+		}
+		.information>p{
+			margin-bottom: 5vh;
+		}
+		.progress_bar{
+			position: relative;
+		}
+		.control_bar{
+			text-align: center;
+			margin-top:2vh;
+		}
+		.control_bar .iconfont{
+			display: inline-block;
+			margin: 0 5vh;
+			color:#ccc;
+			font-size: 4vh;
+		}
+		.control_bar .iconfont:hover{
+			color:#fff;
+			cursor: pointer;
+		}
+		.under_bar{
+			margin:5vh 0;
+			position: relative;
+			height: 1vh;
+			width: 50vw;
+			background-color: #999; 
+			border-radius: 2px;
+		}
+		.top_bar{
+			position: absolute;
+			height: 1vh;
+			width: 10vw;
+			background-color: #fff; 
+			border-radius: .5vh;
+		}
+		.music_list{
+			font-size: 2vh;
+			margin: 2vh auto;
+		}
+		.music_list>li{
+			margin: 1vh 2vh; 
+			float: left;
+			text-align: center;
+			overflow: hidden;
+		}
+		.music_list>li:hover{
+			box-shadow: 0px 0px 2px 5px rgba(255,255,255,0.8);
+			transition: .2s;
+
+		}
+		.music_list a{
+			margin: 0.5vh auto;
+			display: block;
+			width: 20vh;
+			height: 20vh;
+		}
+		.my_favor{
+			background: url("./1.jpg");
+			background-size: cover;
+		}
+		.spring{
+			background: url("./2.jpg");
+			background-size: cover;
+		}
+		.autumn{
+			background: url("./3.jpg");
+			background-size: cover;
+		}
+		.winter{
+			background: url("./4.jpg");
+			background-size: cover;
+		}
+		.time{
+			position: absolute;
+			right: -5vh;
+			top: -1vh;
+			font-size: 1vh;
+		}
+		.count .iconfont{
+			margin-right: 10vw;
+		}
+		.count>span{
+			font-size: 2vh;
+			padding-left: 1vw;
+		}
+		@media (min-width: 700px) {
+		  .header {
+		    width: 600px;
+		  }
+		}
+		@media (min-width: 900px) {
+		  .header {
+		    width: 800px;
+		  }
+		}
+		@media (min-width: 1000px) {
+		  .header {
+		    width: 900px;
+		  }
+		}
+		@media (min-width: 1200px) {
+		  .header {
+		    width: 1100px;
+		  }
+		}
+		footer .iconfont{
+			position: absolute;
+			font-size: 5vh;
+			top: 83vh;
+		}
+		footer .iconfont:first-child{
+			left: 20vh;
+		}
+		footer .iconfont:last-child{
+			left: 130vh;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<section class="control">
+			<div class="image"></div>
+			<div class="control_bar">
+				<span class="iconfont icon-heart"></span>
+				<span class="iconfont icon-stop"></span>
+				<span class="iconfont icon-nextmusic"></span>
+			</div>
+		</section>
+		<section class="information">
+			<p class="music_style">我的最爱</p>
+			<p class="music_name">It's a new day</p>
+			<div class='count'>
+				<span class="iconfont icon-earphone">3333</span>
+				<span class="iconfont icon-heart">128</span>
+				<span class="iconfont icon-praise">20</span>
+			</div>
+			<div class="progress_bar">
+				<div class='under_bar'>
+					<div class='top_bar'></div>
+					<span class="time">2:08</span>
+				</div>
+				
+			</div>
+			<p class='author'>马大师</p>
+		</section>
+	</header>
+	<div id="bg"></div>
+	<footer>
+		<span class="iconfont icon-pre"></span>
+		<ul class="music_list">
+			<li>
+				<a class='my_favor' href=""></a>
+				<p>我的最爱</p>
+			</li>
+			<li>
+				<a class='spring' href=""></a>
+				<p>漫步春天</p>
+			</li>
+			<li>
+				<a class='autumn' href=""></a>
+				<p>秋日私语</p>
+			</li>
+			<li>
+				<a class="winter" href=""></a>
+				<p>温暖冬日</p>
+			</li>			
+		</ul>
+		<span class="iconfont icon-next"></span>
+	</footer>
+</body>
+</html>
