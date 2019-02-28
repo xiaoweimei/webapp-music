@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+	<link rel="stylesheet" href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css">
 	<link rel="stylesheet" href="https://at.alicdn.com/t/font_1059464_6eszze503rc.css">
 	<title>music</title>
 	<style>
@@ -50,12 +51,11 @@
 			margin: 5vh auto 0 auto;
 			height: calc(100% - 35vh);
 		}
-		footer{
-			display: absolute;
-			bottom: 0;
-			height: 35vh;
-			padding: 1vh 30vh;
-			background-color: rgba(0,0,0,0.3);
+		footer {
+		  height: 35vh;
+		  color: #fff;
+		  background: rgba(255, 255, 255, 0.2);
+		  box-shadow: 0px -.25vh .25vh .25vh rgba(255,255,255,0.2);
 		}
 		section.control{
 			float: left;
@@ -124,14 +124,19 @@
 		.music_list{
 			font-size: 2vh;
 			margin: 2vh auto;
+			height: 30vh;
 		}
-		.music_list>li{
-			margin: 1vh 2vh; 
-			float: left;
-			text-align: center;
-			overflow: hidden;
+		footer li{
+		  float: left;
+		  margin-top: 1vh;
+		  margin: 2vh 2vh 0 2vh;
+		  width: 20vh;
+		  height: 20vh;
+
+		  text-align: center;
+		  cursor: pointer;
 		}
-		.music_list>li:hover{
+		.music_list li:hover{
 			box-shadow: 0px 0px 2px 5px rgba(255,255,255,0.8);
 			transition: .2s;
 
@@ -141,22 +146,6 @@
 			display: block;
 			width: 20vh;
 			height: 20vh;
-		}
-		.my_favor{
-			background: url("./1.jpg");
-			background-size: cover;
-		}
-		.spring{
-			background: url("./2.jpg");
-			background-size: cover;
-		}
-		.autumn{
-			background: url("./3.jpg");
-			background-size: cover;
-		}
-		.winter{
-			background: url("./4.jpg");
-			background-size: cover;
 		}
 		.time{
 			position: absolute;
@@ -171,36 +160,72 @@
 			font-size: 2vh;
 			padding-left: 1vw;
 		}
+		.box {
+		  position: relative;
+		  margin: 0 auto;
+		  width: 600px;
+		}
 		@media (min-width: 700px) {
-		  .header {
+		  .box {
 		    width: 600px;
 		  }
 		}
 		@media (min-width: 900px) {
-		  .header {
+		  .box {
 		    width: 800px;
 		  }
 		}
 		@media (min-width: 1000px) {
-		  .header {
+		  .box {
 		    width: 900px;
 		  }
 		}
 		@media (min-width: 1200px) {
-		  .header {
+		  .box {
 		    width: 1100px;
 		  }
 		}
-		footer .iconfont{
+		footer .iconfont {
+		  position: absolute;
+		  top: 5vh;
+		  font-size: 6vh;
+		  color: rgba(255, 255, 255, 0.4);
+		  opacity: 0;
+		  transition: all .4s;
+		  cursor: pointer;
+		}
+		footer:hover .iconfont {
+		  opacity: 1;
+		}
+		footer .iconfont:hover {
+		  color: rgba(255, 255, 255, 0.8);
+		}
+		footer .icon-pre {
+		  left: -8vh;
+		}
+		footer .icon-next {
+		  right: -8vh;
+		}
+		footer ul:after{
+			content:'';
+			display: block;
+			clear: both;
+		}
+		footer ul{
 			position: absolute;
-			font-size: 5vh;
-			top: 83vh;
 		}
-		footer .iconfont:first-child{
-			left: 20vh;
+		footer .music_list {
+		  position: relative;
+		  overflow: hidden;
+		  height: 24vh;
 		}
-		footer .iconfont:last-child{
-			left: 130vh;
+		footer li .cover {
+		  height: 16vh;
+		  background-size: cover;
+		  background-position: center center;
+		}
+		footer li.active {
+		  box-shadow: 0 0 .5vh .5vh rgba(255,255,255,0.8);
 		}
 	</style>
 </head>
@@ -210,7 +235,7 @@
 			<div class="image"></div>
 			<div class="control_bar">
 				<span class="iconfont icon-heart"></span>
-				<span class="iconfont icon-stop"></span>
+				<span class="iconfont btn-play icon-stop"></span>
 				<span class="iconfont icon-nextmusic"></span>
 			</div>
 		</section>
@@ -230,30 +255,262 @@
 				
 			</div>
 			<p class='author'>马大师</p>
+			<div class='lyric'><p>演唱者:马大师</p></div>
 		</section>
 	</header>
 	<div id="bg"></div>
 	<footer>
-		<span class="iconfont icon-pre"></span>
-		<ul class="music_list">
-			<li>
-				<a class='my_favor' href=""></a>
-				<p>我的最爱</p>
-			</li>
-			<li>
-				<a class='spring' href=""></a>
-				<p>漫步春天</p>
-			</li>
-			<li>
-				<a class='autumn' href=""></a>
-				<p>秋日私语</p>
-			</li>
-			<li>
-				<a class="winter" href=""></a>
-				<p>温暖冬日</p>
-			</li>			
-		</ul>
-		<span class="iconfont icon-next"></span>
+		<div class='box'>
+			<span class="iconfont icon-pre"></span>
+			<span class="iconfont icon-next"></span>
+			<div class="music_list">
+				<ul>
+	             <li>
+	              <div class="cover" style="background-image:url(http://cloud.hunger-valley.com/music/public_tuijian_spring.jpg-small)"></div>
+	               <h3>漫步春天</h3>
+	             </li>
+	             <li>
+	              <div class="cover" style="background-image:url(http://cloud.hunger-valley.com/music/public_tuijian_spring.jpg-small)"></div>
+	               <h3>漫步春天</h3>
+	             </li>
+	             <li>
+	              <div class="cover" style="background-image:url(http://cloud.hunger-valley.com/music/public_tuijian_spring.jpg-small)"></div>
+	               <h3>漫步春天</h3>
+	             </li>
+	             <li>
+	              <div class="cover" style="background-image:url(http://cloud.hunger-valley.com/music/public_tuijian_spring.jpg-small)"></div>
+	               <h3>漫步春天</h3>
+	             </li>			
+				</ul>
+			</div>
+		</div>
 	</footer>
+	<script>
+		var EventConter={
+	      on:function(type,handler){
+	        $(document).on(type,handler)
+	      },
+	      fire:function(type,data){
+	        $(document).trigger(type,data)
+	      }
+	    }
+	    var Footer={
+	      init:function(){
+	      this.$footer=$('footer')
+	      this.$box=this.$footer.find('.music_list')
+	      this.$ul=this.$footer.find('ul')
+	      this.$leftBtn=this.$footer.find('.icon-pre')
+	      this.$rightBtn=this.$footer.find('.icon-next')
+	      console.log(this.$rightBtn)
+	      this.bind()
+	      this.render()    
+	      this.isToEnd =false
+	      this.isStart =true
+	       this.isAnimate=false
+	      },
+	      bind:function(){
+	      var  _this=this
+	      _this.$rightBtn.on('click',function(){
+	      	console.log(123)
+	        if(_this.isAnimate) return
+	        var itemWidth=_this.$footer.find('li').outerWidth(true)
+	        var itemCount=Math.floor(_this.$box.width()/itemWidth) 
+	        console.log(itemWidth,itemCount)
+	        if(!_this.isToEnd){
+	          _this.isAnimate=true
+	          _this.$ul.animate({
+	            left: '-='+ itemCount*itemWidth
+	          },400,function(){
+	            _this.isAnimate =false
+	            _this.isStart=false
+	            // console.log(parseFloat(_this.$ul.css('left')),parseFloat(_this.$ul.width()))
+	            if(parseFloat(_this.$box.width())-parseFloat(_this.$ul.css('left'))>=parseFloat(_this.$ul.width())){
+	              console.log('change')
+	              _this.isToEnd=true
+	            }
+	          })
+	        }
+	      })
+	      this.$leftBtn.on('click',function(){
+	        var itemWidth=_this.$footer.find('li').outerWidth(true)
+	        var itemCount=Math.floor(_this.$box.width()/itemWidth) 
+	        if(_this.isAnimate) return
+	        if(!_this.isStart){
+	          _this.isAnimate=true
+	          _this.$ul.animate({
+	            left: '+='+ itemCount*itemWidth
+	          },400,function(){
+	            _this.isAnimate=false
+	            _this.isToEnd=false
+	            //console.log(parseFloat(_this.$ul.css('left')),parseFloat(_this.$ul.width()))
+	            if(parseFloat(_this.$ul.css('left'))>=0){
+	              _this.isStart=true
+	            }
+	          })
+	        }
+	      })
+	      this.$footer.on('click','li',function(){
+	        $(this).addClass('active').siblings().removeClass('active')
+	        EventConter.fire('select-albumn',{
+	          channelId:$(this).attr('data-channel-id'),
+	          channelName:$(this).attr('data-channel-name')
+	        })
+	      })
+	      },
+	      render(){
+	        var _this=this
+	        $.getJSON('https://jirenguapi.applinzi.com/fm/getChannels.php').done(function(ret){
+	        //console.log(ret) 
+	        _this.renderFooter(ret.channels)
+	        }).fail(function(){
+	          console.log('not get data')
+	        })
+	      },
+	      renderFooter:function(channels){
+	        var html=''
+	      channels.forEach(function(channel){
+	        html +='<li data-channel-id='+channel.channel_id+' data-channel-name='+channel.name+'>'
+	        +'<div class="cover" style="background-image:url('+channel.cover_small+')"></div>'
+	        +'<h3>'+channel.name+'<h3>'
+	        +'</li>'
+	      })
+	      this.$ul.html(html)
+	      this.setStyle()
+	      },
+	      setStyle:function(){
+	        var count=this.$footer.find('li').length//在开始时并没有li元素存入到html里，所以不能直接声明this.$li=$('li')
+	        var width=this.$footer.find('li').outerWidth(true)
+	        this.$ul.css({
+	          width:count*width
+	        })
+	      }//设置ul的宽度使li里的元素能够在一排进行排列
+	    }
+	   var Fm={
+	      init:function(){
+	        this.$container=$('header')
+	       
+
+	        this.audio= new Audio()
+	        this.audio.autoplay=true//这样的话只需修改src就可以播放音乐
+
+	        this.bind()
+	      },
+	      bind:function(){
+	        var _this=this
+	        EventConter.on('select-albumn',function(e,channelObj){
+	          _this.channelId=channelObj.channelId
+	          _this.channelName=channelObj.channelName
+	          _this.loadMusic()
+	        }) 
+	          //console.log(this) 
+	         //console.log(this.$container)
+	        this.$container.find('.icon-stop').on('click',function(){
+	         var $btn =$(this)
+	          if($btn.hasClass('icon-stop')){
+	            $btn.removeClass('icon-stop').addClass('icon-play')
+	            _this.audio.pause()
+	          }else{
+	            $btn.removeClass('icon-play').addClass('icon-stop')
+	            _this.audio.play()
+	          }
+	        })
+
+	        this.$container.find('.icon-nextmusic').on('click',function(){
+	          _this.loadMusic()    
+	        })
+
+
+	        this.audio.addEventListener('play',function(){
+	        	// console.log('play')
+	         //  console.log(112222222222)
+	          //_this.$container.find('.btn-play').removeClass('icon-play').addClass('icon-pause')
+	          clearInterval(_this.statusClock)
+	          _this.statusClock= setInterval(function(){
+	            _this.updateStatus()
+	            console.log(333333333333333333333333333)
+	         },1000)
+	        })
+	        this.audio.addEventListener('pause',function(){
+	         // console.log('pause')
+	          //_this.$container.find('.btn-play').removeClass('icon-pause').addClass('icon-play')
+	        clearInterval(_this.statusClock)
+	        })
+	      },
+
+	      loadMusic(callback){
+	        var _this =this
+	        $.getJSON('https://jirenguapi.applinzi.com/fm/getSong.php',{channel:this.channelId}).done(function(ret){
+	          //console.log(ret.song[0])
+	          _this.song=ret['song'][0]
+	         // console.log(ret['song'][0])
+	          _this.setMusic()
+	          _this.loadLyric()
+	          //console.log(this.$container) 
+	        })
+	      },
+	      loadLyric(){
+	        var _this =this
+	        $.getJSON('https://jirenguapi.applinzi.com/fm/getLyric.php',{sid:this.song.sid}).done(function(ret){
+	         var lyric =ret.lyric
+	         var lyricObj={}
+	         console.log(lyric,'就是这里')
+	         lyric.split('\n').forEach(function(line){
+	            var times= line.match(/\d{2}:\d{2}/g)//时间
+	            var str =line.replace(/\[.+?\]/g,'')//与时间对应的歌词
+	            if(Array.isArray(times)){//有的line不是数组，需加一个这个判断，不然执行下面会报错
+	              times.forEach(function(time){
+	                lyricObj[time]=str//变成key:value形式
+	              })
+	            }      
+	          })
+	        _this.lyricObj=lyricObj
+	        })
+	      },
+	      setMusic(){
+	        //console.log(this.$container)
+	        this.audio.src=this.song.url
+	        //console.log(this)
+	        $('#bg').css('background-image','url('+this.song.picture+')')
+	        this.$container.find('.image').css('background-image','url('+this.song.picture+')')
+	        this.$container.find('.music_name').text(this.song.title)
+	        this.$container.find('.author').text(this.song.artist)
+	        this.$container.find('.music_style').text(this.channelName)
+	        this.$container.find('.btn-play').removeClass('icon-play').addClass('icon-stop') 
+	      },
+	      updateStatus(){
+	        var min =Math.floor(this.audio.currentTime/60)
+	        var second=Math.floor(this.audio.currentTime%60)+''
+	        second= second.length===2?second:'0'+second
+	        this.$container.find('.time').text(min+':'+second) 
+	        this.$container.find('.top_bar').css('width',this.audio.currentTime/this.audio.duration*100+'%')  
+	        var line=this.lyricObj['0'+min+':'+second]
+	        console.log(line)
+	        if(line){
+	          $('header').find('.lyric p').text(line).boomText()
+	        }
+	      }
+	    }
+	    $.fn.boomText=function(type){
+	      console.log(1233333333333)
+	      type = type || 'zoomIn'
+	      this.html(function(){
+	        var arr =$(this).text().split('').map(function(word){
+	          return '<span class="boomText" style="display:inline-block">'+word+'</span>'
+	        })
+	        return arr.join('')
+	      })
+	      var index=0
+	      var $boomTexts=$(this).find('span')
+	      var clock=setInterval(function(){
+	        $boomTexts.eq(index).addClass('animated '+type)//注意 这里要有空格
+	        index++
+	        if(index >=$boomTexts.length){
+	          clearInterval(clock)
+	        }
+	      },300)
+	    }
+	    Footer.init()
+	    Fm.init()
+	</script>
 </body>
 </html>
